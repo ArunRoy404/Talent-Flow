@@ -1,3 +1,4 @@
+import FAQ from "@/sections/FAQ";
 import Features from "@/sections/Features";
 import Hero from "@/sections/Hero";
 import Testimonials from "@/sections/Testimonials";
@@ -10,6 +11,7 @@ export default function Home() {
       <TrendingJobs/>
       <Features/>
       <Testimonials/>
+      <FAQ/>
     </main>
   );
 }
