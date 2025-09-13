@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Hero() {
     return (
-        <section className="bg-white h-150 flex items-center justify-center px-6">
+        <section className="bg-white py-12 md:py-20 flex items-center justify-center px-6">
             <div className="max-w-3xl text-center flex flex-col gap-6">
 
                 {/* Title */}
