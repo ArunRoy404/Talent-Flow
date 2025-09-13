@@ -1,10 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Navbar from "@/components/Navbar/Navbar";
-import { ConfigProvider } from "antd";
 import Footer from "@/components/Footer/Footer";
 import { Toaster } from 'sonner';
+import AntConfigProvider from "@/providers/AntConfigProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,27 +26,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ConfigProvider
-          theme={{
-            token: {
-              colorPrimary: "#D6FD60",           // --color-primary
-              colorTextLightSolid: '#003C51', // Button text color
-              colorSuccess: "#003C51",       // --color-success
-              colorWarning: "#f59e0b",       // --color-warning
-              colorError: "#dc2626",         // --color-error
-              colorInfo: "#0ea5e9",          // --color-info
-              colorTextBase: "#111827",      // --color-text-base
-              colorBgBase: "#ffffff",        // --color-bg-base
-            },
-          }}
-        >
-          <AntdRegistry>
-            <Toaster />
-            <Navbar />
-            {children}
-            <Footer />
-          </AntdRegistry>
-        </ConfigProvider>
+        <AntConfigProvider>
+          <Toaster />
+          <Navbar />
+          {children}
+          <Footer />
+        </AntConfigProvider>
       </body>
     </html>
   );
