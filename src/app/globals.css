@@ -4,6 +4,8 @@
 @theme {
   --color-primary: #D6FD60;
   --color-secondary: #003C51;
+  --color-card-bg: #E9ECF8;
+  --color-card-bg-hover: #E2F6CD;
 
   --color-primary-light: #3b82f6;
   --color-primary-dark: #1e40af;
