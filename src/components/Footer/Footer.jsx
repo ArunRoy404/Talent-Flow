@@ -1,5 +1,6 @@
 import FooterNavigation from "./FooterNavigation";
 import SocialLinks from "../SocialLinks/SocialLinks";
+import Copyright from "../Copyright/Copyright";
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -39,9 +40,7 @@ export default function Footer() {
             </div>
 
             {/* Bottom copyright */}
-            <div className="mt-8 border-t border-white/20 pt-6 text-center text-white/60 text-sm">
-                © {new Date().getFullYear()} JobPortal. All rights reserved.
-            </div>
+            <Copyright />
         </footer>
     );
 }
