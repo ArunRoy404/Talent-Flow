@@ -26,8 +26,8 @@ export default function Hero() {
                     </Button>
 
                     <Button size="large" type="default" className="!text-secondary" >
-                        <Link href="/signup">
-                            Sign Up
+                        <Link href="/signin">
+                            Sign In
                         </Link>
                     </Button>
                 </div>
