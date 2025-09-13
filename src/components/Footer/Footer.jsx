@@ -1,5 +1,5 @@
-import { Linkedin, Twitter, Github, Facebook } from "lucide-react";
 import FooterNavigation from "./FooterNavigation";
+import SocialLinks from "../SocialLinks/SocialLinks";
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -31,12 +31,7 @@ export default function Footer() {
                 {/* Social & Contact */}
                 <div>
                     <h3 className="text-lg font-semibold text-primary mb-4">Connect with Us</h3>
-                    <div className="flex gap-4 mb-4">
-                        <Linkedin className="w-6 h-6 hover:text-primary transition-colors cursor-pointer" />
-                        <Twitter className="w-6 h-6 hover:text-primary transition-colors cursor-pointer" />
-                        <Github className="w-6 h-6 hover:text-primary transition-colors cursor-pointer" />
-                        <Facebook className="w-6 h-6 hover:text-primary transition-colors cursor-pointer" />
-                    </div>
+                    <SocialLinks />
                     <p className="text-white/80 text-sm">
                         support@talentflow.com
                     </p>
