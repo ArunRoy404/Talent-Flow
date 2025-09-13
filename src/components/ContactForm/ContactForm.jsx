@@ -1,11 +1,13 @@
 'use client'
-
-import { Form, Input, Button, message } from "antd";
+import { toast } from 'sonner';
+import { Form, Input, Button } from "antd";
+import { useForm } from 'antd/es/form/Form';
 
 const ContactForm = () => {
-    const handleSubmit = (values) => {
-        console.log(values);
-        message.success("Your message has been sent!");
+    const [form] = Form.useForm()
+    const handleSubmit = () => {
+        toast('Your message has been sent!')
+        form.resetFields()
     };
 
 
@@ -15,6 +17,7 @@ const ContactForm = () => {
                 Send Us a Message
             </h2>
             <Form
+                form={form}
                 layout="vertical"
                 onFinish={handleSubmit}
                 className="space-y-4"
