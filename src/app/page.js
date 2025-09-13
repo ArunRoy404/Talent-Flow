@@ -1,3 +1,4 @@
+import Features from "@/sections/Features";
 import Hero from "@/sections/Hero";
 import TrendingJobs from "@/sections/TrendingJobs";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <main className="py-20">
       <Hero/>
       <TrendingJobs/>
+      <Features/>
     </main>
   );
 }
