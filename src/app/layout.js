@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import Navbar from "@/components/Navbar/Navbar";
+import { ConfigProvider } from "antd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +25,23 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AntdRegistry>{children}</AntdRegistry>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#D6FD60",           // --color-primary
+              colorTextLightSolid: '#003C51', // Button text color
+              colorSuccess: "#003C51",       // --color-success
+              colorWarning: "#f59e0b",       // --color-warning
+              colorError: "#dc2626",         // --color-error
+              colorInfo: "#0ea5e9",          // --color-info
+              colorTextBase: "#111827",      // --color-text-base
+              colorBgBase: "#ffffff",        // --color-bg-base
+            },
+          }}
+        >
+          <Navbar />
+          <AntdRegistry>{children}</AntdRegistry>
+        </ConfigProvider>
       </body>
     </html>
   );
