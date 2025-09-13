@@ -42,7 +42,7 @@ export default function Features() {
                 {/* Feature Cards container */}
                 <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                     {features.map((feature) => (
-                        <FeatureCard feature={feature}/>
+                        <FeatureCard key={feature.id} feature={feature}/>
                     ))}
                 </div>
             </div>
