@@ -12,6 +12,7 @@ export default function Navbar() {
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
     const navLinks = [
+        { href: "/", label: "Home" },
         { href: "/jobs", label: "Jobs" },
         { href: "/about", label: "About" },
         { href: "/contact", label: "Contact" },

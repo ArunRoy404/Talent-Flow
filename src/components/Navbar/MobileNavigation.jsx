@@ -1,8 +1,10 @@
 import { Button } from 'antd';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 const MobileNavigation = ({menuOpen, navLinks, setMenuOpen}) => {
+    const pathName = usePathname()
     return (
         <>
             {menuOpen && (
@@ -11,14 +13,14 @@ const MobileNavigation = ({menuOpen, navLinks, setMenuOpen}) => {
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="hover:text-secondary"
+                            className={`${pathName==link.href ? 'text-secondary font-bold' :''}  hover:text-secondary`}
                             onClick={() => setMenuOpen(false)}
                         >
                             {link.label}
                         </Link>
                     ))}
                     <Button type="primary" className="mt-2">
-                        <Link href="/signin" className="text-secondary">
+                        <Link href="/signin" className='text-secondary' >
                             Sign In
                         </Link>
                     </Button>
