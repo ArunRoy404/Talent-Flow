@@ -1,5 +1,4 @@
-// components/Features.jsx
-import { Button } from "antd";
+import FeatureCard from "@/components/FeatureCard/FeatureCard";
 import { Briefcase, Building2, TrendingUp } from "lucide-react";
 
 export default function Features() {
@@ -40,21 +39,10 @@ export default function Features() {
                     </p>
                 </div>
 
-                {/* Feature Cards */}
+                {/* Feature Cards container */}
                 <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                     {features.map((feature) => (
-                        <div
-                            key={feature.id}
-                            className=" bg-secondary rounded-xl shadow-sm p-6 text-center"
-                        >
-                            <div className="flex justify-center mb-4">{feature.icon}</div>
-                            <h3 className="text-xl font-semibold text-white mb-2">
-                                {feature.title}
-                            </h3>
-                            <p className="text-white leading-relaxed">
-                                {feature.description}
-                            </p>
-                        </div>
+                        <FeatureCard feature={feature}/>
                     ))}
                 </div>
             </div>
