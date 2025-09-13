@@ -8,7 +8,7 @@ import TrendingJobs from "@/sections/TrendingJobs";
 
 export default function Home() {
   return (
-    <main className="py-20">
+    <main className="pt-20">
       <Hero/>
       <TrendingJobs/>
       <Features/>

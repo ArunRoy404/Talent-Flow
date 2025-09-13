@@ -3,6 +3,7 @@ import "./globals.css";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Navbar from "@/components/Navbar/Navbar";
 import { ConfigProvider } from "antd";
+import Footer from "@/components/Footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,8 +40,11 @@ export default function RootLayout({ children }) {
             },
           }}
         >
-          <Navbar />
-          <AntdRegistry>{children}</AntdRegistry>
+          <AntdRegistry>
+            <Navbar />
+            {children}
+            <Footer />
+          </AntdRegistry>
         </ConfigProvider>
       </body>
     </html>
