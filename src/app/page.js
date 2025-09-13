@@ -1,3 +1,4 @@
+import CTA from "@/sections/CTA";
 import FAQ from "@/sections/FAQ";
 import Features from "@/sections/Features";
 import Hero from "@/sections/Hero";
@@ -12,6 +13,7 @@ export default function Home() {
       <Features/>
       <Testimonials/>
       <FAQ/>
+      <CTA/>
     </main>
   );
 }
