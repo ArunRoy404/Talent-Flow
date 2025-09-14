@@ -1,5 +1,3 @@
-"use client";
-
 import { Menu, User } from "lucide-react";
 
 export default function DashboardHeader({ setSidebarOpen }) {
