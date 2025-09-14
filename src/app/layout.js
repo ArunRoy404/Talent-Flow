@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { Toaster } from 'sonner';
 import AntConfigProvider from "@/providers/AntConfigProvider";
+import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,10 +28,12 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AntConfigProvider>
-          <Toaster />
-          <Navbar />
-          {children}
-          <Footer />
+          <NextAuthSessionProvider>
+            <Toaster />
+            <Navbar />
+            {children}
+            <Footer />
+          </NextAuthSessionProvider>
         </AntConfigProvider>
       </body>
     </html>
