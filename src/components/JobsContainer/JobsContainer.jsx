@@ -4,10 +4,9 @@ import Section from '../Section/Section';
 
 const JobsContainer = async ({ limit }) => {
 
-    // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs?limit=${limit || 0}`)
-    // const data = await res.json()
-    // const jobs = await data?.data
-    const jobs = []
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs?limit=${limit || 0}`)
+    const data = await res.json()
+    const jobs = await data?.data
 
     return (
         <Section>
