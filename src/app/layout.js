@@ -31,7 +31,9 @@ export default function RootLayout({ children }) {
           <NextAuthSessionProvider>
             <Toaster />
             <Navbar />
-            {children}
+            <div className="min-h-[calc(100vh-613px)] md:min-h-[calc(100vh-345px)] ">
+              {children}
+            </div>
             <Footer />
           </NextAuthSessionProvider>
         </AntConfigProvider>
