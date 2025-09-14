@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "antd";
 import Link from "next/link";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
 import MobileHamburger from "./MobileHamburger";
+import Authentication from "./Authentication";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -30,14 +30,7 @@ export default function Navbar() {
                 {/* Desktop Navigation */}
                 <DesktopNavigation navLinks={navLinks} />
 
-                {/* Sign In Button (desktop) */}
-                <div className="hidden md:block">
-                    <Button type="primary">
-                        <Link href="/signin" className="text-secondary">
-                            Sign In
-                        </Link>
-                    </Button>
-                </div>
+                <Authentication/>
 
                 {/* Mobile Hamburger */}
                 <MobileHamburger toggleMenu={toggleMenu} menuOpen={menuOpen} />
