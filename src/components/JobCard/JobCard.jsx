@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from "antd";
+import Link from "next/link";
 
 const JobCard = ({ job }) => {
     return (
@@ -32,7 +33,9 @@ const JobCard = ({ job }) => {
                     <span className="text-xl">  ${job.salary}</span>
                     {job.monthly ? "/monthly" : ""}
                 </div>
-                <Button type="default" className="!bg-transparent !text-secondary !border-secondary ">Apply</Button>
+                <Link href={`${process.env.NEXT_PUBLIC_API_URL}/jobs/${job._id}`}>
+                    <Button type="default" className="!bg-transparent !text-secondary !border-secondary ">Apply</Button>
+                </Link>
             </div>
         </Card>
     );
