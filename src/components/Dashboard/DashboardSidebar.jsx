@@ -21,7 +21,7 @@ const links = [
 
 export default function DashboardSidebar({ closeSidebar }) {
     return (
-        <aside className="w-64 bg-white p-6">
+        <aside className="w-64 border border-gray-300  bg-white p-6">
             <h1 className="text-2xl font-bold text-secondary mb-8">Dashboard</h1>
             <DashboardLinks links={links} closeSidebar={closeSidebar}/>
         </aside>

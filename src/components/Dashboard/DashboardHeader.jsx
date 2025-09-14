@@ -4,7 +4,7 @@ import { Menu, User } from "lucide-react";
 
 export default function DashboardHeader({ setSidebarOpen }) {
     return (
-        <header className="bg-white shadow p-4 flex items-center justify-between">
+        <header className="bg-white border-b border-gray-300 p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
                 {/* Mobile Menu Button */}
                 <button
