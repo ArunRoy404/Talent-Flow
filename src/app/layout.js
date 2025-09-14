@@ -5,6 +5,7 @@ import { Toaster } from 'sonner';
 import AntConfigProvider from "@/providers/AntConfigProvider";
 import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 import FooterContainer from "@/components/Footer/FooterContainer";
+import ReactQueryProvider from "@/providers/QueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +30,14 @@ export default function RootLayout({ children }) {
       >
         <AntConfigProvider>
           <NextAuthSessionProvider>
-            <Toaster />
-            <Navbar />
-            <div className="min-h-[calc(100vh-613px)] md:min-h-[calc(100vh-345px)] ">
-              {children}
-            </div>
-            <FooterContainer />
+            <ReactQueryProvider>
+              <Toaster />
+              <Navbar />
+              <div className="min-h-[calc(100vh-613px)] md:min-h-[calc(100vh-345px)] ">
+                {children}
+              </div>
+              <FooterContainer />
+            </ReactQueryProvider>
           </NextAuthSessionProvider>
         </AntConfigProvider>
       </body>
