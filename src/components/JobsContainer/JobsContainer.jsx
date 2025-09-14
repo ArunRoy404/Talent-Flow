@@ -3,13 +3,13 @@ import JobCard from '../JobCard/JobCard';
 import Section from '../Section/Section';
 import axios from 'axios';
 
-const fetchJobs = async () => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs`)
+const fetchJobs = async (limit) => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs?limit=${limit || 0}`)
     return res.data.data
 }
 
 const JobsContainer = async ({ limit }) => {
-    const jobs = await fetchJobs()
+    const jobs = await fetchJobs(limit)
 
     return (
         <Section>
