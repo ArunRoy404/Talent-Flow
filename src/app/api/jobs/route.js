@@ -8,3 +8,11 @@ export const GET = async (req, res) => {
     const data = await jobsCollection.find().limit(limit).toArray()
     return NextResponse.json({ data })
 }
+
+
+export const POST = async (req, res) => {
+    const postedData = await req.json()
+    const jobsCollection = dbConnect('jobs')
+    const data = await jobsCollection.insertOne(postedData)
+    return NextResponse.json({ data })
+}

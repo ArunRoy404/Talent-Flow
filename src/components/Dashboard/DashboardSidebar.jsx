@@ -3,11 +3,13 @@ import {
     FilePlus2,
     ListChecks,
     MessageSquare,
-    ClipboardList
+    ClipboardList,
+    Home
 } from "lucide-react";
 import DashboardLinks from "./DashboardLinks";
 
 const links = [
+    { href: "/", label: "Home", icon: Home },
     { href: "/dashboard", label: "Overview", icon: Briefcase },
     { href: "/dashboard/add-job", label: "Add Job", icon: FilePlus2 },
     { href: "/dashboard/jobs", label: "Manage Jobs", icon: ListChecks },
