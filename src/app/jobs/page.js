@@ -1,3 +1,4 @@
+import JobsContainer from '@/components/JobsContainer/JobsContainer';
 import PageBanner from '@/components/PageBanner/PageBanner';
 import PageDescription from '@/components/PageBanner/PageDescription';
 import PageTitle from '@/components/PageBanner/PageTitle';
@@ -17,6 +18,8 @@ const Jobs = () => {
                 </PageDescription>
             </PageBanner>
 
+
+            <JobsContainer/>
         </main>
     );
 };
