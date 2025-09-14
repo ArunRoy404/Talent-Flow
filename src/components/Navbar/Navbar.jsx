@@ -6,10 +6,13 @@ import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
 import MobileHamburger from "./MobileHamburger";
 import Authentication from "./Authentication";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const toggleMenu = () => setMenuOpen(!menuOpen);
+    const pathname = usePathname()
+    if (pathname.includes('/dashboard')) return <></>
 
     const navLinks = [
         { href: "/", label: "Home" },
@@ -30,7 +33,7 @@ export default function Navbar() {
                 {/* Desktop Navigation */}
                 <DesktopNavigation navLinks={navLinks} />
 
-                <Authentication/>
+                <Authentication />
 
                 {/* Mobile Hamburger */}
                 <MobileHamburger toggleMenu={toggleMenu} menuOpen={menuOpen} />
