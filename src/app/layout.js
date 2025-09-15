@@ -20,6 +20,16 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "TalentFlow | Find Your Next Opportunity",
   description: "TalentFlow connects top talent with leading companies. Explore jobs, showcase your skills, and take the next step in your career.",
+  openGraph: {
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'TalentFlow - Find Your Next Opportunity',
+      },
+    ],
+  }
 };
 
 export default function RootLayout({ children }) {
