@@ -96,7 +96,7 @@ const page = () => {
 
     return (
         <div className="p-6 bg-white min-h-screen">
-            <h2 className="text-2xl font-bold text-secondary mb-6">Manage Jobs</h2>
+            <h2 className="text-2xl font-bold text-secondary mb-6">My Applications</h2>
             <Table
                 columns={columns}
                 dataSource={applications}
