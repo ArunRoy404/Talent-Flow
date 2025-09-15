@@ -1,10 +1,12 @@
-
 import UpdateJobForm from "@/components/JobForm/UpdateJobForm";
 import axios from "axios";
 
 const fetchJob = async (id) => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${id}`)
-    return res.data
+    try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${id}`)
+        return res.data
+    } catch {
+    }
 }
 
 const UpdateJob = async ({ params }) => {
@@ -19,7 +21,7 @@ const UpdateJob = async ({ params }) => {
     return (
         <div className="p-6 bg-white w-full">
             <h2 className="text-2xl font-bold text-secondary mb-6">Update Job</h2>
-            <UpdateJobForm job={job}/>
+            <UpdateJobForm job={job} />
         </div>
     );
 };

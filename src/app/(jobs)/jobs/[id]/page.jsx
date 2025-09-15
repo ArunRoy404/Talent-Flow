@@ -7,8 +7,12 @@ import JobRequirements from "@/components/JobDetails/JobRequirements";
 import axios from "axios";
 
 const fetchJob = async (id) => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${id}`)
-    return res.data
+    try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${id}`)
+        return res.data
+    } catch {
+
+    }
 }
 
 
