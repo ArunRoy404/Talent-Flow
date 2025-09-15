@@ -22,6 +22,7 @@ const ApplyButton = ({ job }) => {
         const applicationData = {
             applicantName: session?.user?.name,
             applicantEmail: session?.user?.email,
+            employerEmail: job.addedBy,
             jobID: job._id,
             status: 'pending'
         }
