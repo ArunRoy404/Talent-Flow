@@ -5,14 +5,17 @@ import { signIn } from 'next-auth/react';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
 import Loader from '../Loader/Loader';
+import { useSearchParams } from 'next/navigation';
 
 const GoogleSignIn = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const searchParams = useSearchParams()
+    const callbackUrl = searchParams.get("callbackUrl") || "/"
 
     const handleSignin = async () => {
         setIsLoading(true)
         try {
-            const res = await signIn('google', { callbackUrl: '/' })
+            const res = await signIn('google', { callbackUrl })
             toast.success("Signin in progress")
         } catch {
             toast.error("Signin unsuccessful")
