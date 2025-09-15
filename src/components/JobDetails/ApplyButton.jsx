@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import Loader from '../Loader/Loader';
 import { toast } from 'sonner';
 import axios from 'axios';
+import Link from 'next/link';
 
 const postApplication = async (data) => {
     const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/applications`, data)
@@ -25,28 +26,41 @@ const ApplyButton = ({ job }) => {
             status: 'pending'
         }
 
-        try{
+        try {
             await postApplication(applicationData)
             toast.success('Successfully Applied')
-        }catch{
+        } catch {
             toast.error("Application failed")
-        }finally{
+        } finally {
             setIsLoading(false)
         }
     }
     return (
-        <Button
-            disabled={isLoading}
-            onClick={handleApply}
-            type="primary"
-            className="!bg-primary !text-secondary !px-6 !py-2 !rounded-lg"
-        >
+        <>
             {
-                isLoading
-                    ? <Loader size="20" stroke="3" />
-                    : 'Apply Now'
+                (session?.user?.email === job?.addedBy)
+                    ? <Link href={'/dashboard/jobs'}>
+                        <Button
+                            type="primary"
+                            className="!bg-primary !text-secondary !px-6 !py-2 !rounded-lg"
+                        >
+                            Dashboard
+                        </Button>
+                    </Link>
+                    : <Button
+                        disabled={isLoading}
+                        onClick={handleApply}
+                        type="primary"
+                        className="!bg-primary !text-secondary !px-6 !py-2 !rounded-lg"
+                    >
+                        {
+                            isLoading
+                                ? <Loader size="20" stroke="3" />
+                                : 'Apply Now'
+                        }
+                    </Button>
             }
-        </Button>
+        </>
     );
 };
 
