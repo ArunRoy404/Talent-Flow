@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Fade } from 'react-awesome-reveal';
 
 const fetchJobs = async (limit) => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs?limit=${limit || 0}`)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs?limit=${limit}`)
     return res.data.data
 }
 

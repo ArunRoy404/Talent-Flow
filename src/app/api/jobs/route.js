@@ -3,7 +3,9 @@ import { NextResponse } from "next/server";
 
 export const GET = async (req, res) => {
     const { searchParams } = new URL(req.url);
-    const limit = parseFloat(searchParams.get("limit")) || 0
+    const limit = parseInt(searchParams.get("limit"))
+
+    console.log(limit);
 
     const addedBy = searchParams.get("addedBy");
     const query = addedBy ? { addedBy } : {};
