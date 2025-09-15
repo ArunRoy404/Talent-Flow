@@ -1,14 +1,13 @@
 import { Button } from "antd";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import SignoutButton from "../SignoutButton/SignoutButton";
 
 const AuthenticationMobile = () => {
     const { data: session } = useSession();
     if (session) return (
         <div className="w-full">
-            <Button onClick={() => signOut()} type="default" className="!text-secondary !w-full">
-                Sign Out
-            </Button>
+            <SignoutButton/>
         </div>
     )
     return (

@@ -1,14 +1,13 @@
 import { Button } from "antd";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import SignoutButton from "../SignoutButton/SignoutButton";
 
 const Authentication = () => {
     const { data: session } = useSession();
     if (session) return (
         <div className="hidden md:block">
-            <Button onClick={() => signOut()} type="default" className="!text-secondary">
-                Sign Out
-            </Button>
+            <SignoutButton/>
         </div>
     )
     return (
