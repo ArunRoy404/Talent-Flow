@@ -7,6 +7,7 @@ import axios from "axios";
 import { Edit, Trash2 } from "lucide-react";
 import { toast } from 'sonner';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 
 
 
@@ -47,15 +48,10 @@ const ManageJob = () => {
             toast.error("Failed to delete job.");
         },
     })
-    
+
 
     const handleDelete = (jobId) => {
         mutation.mutate(jobId);
-    };
-
-    const handleEdit = (jobId) => {
-        // Redirect to edit page or open modal
-        console.log("Edit job:", jobId);
     };
 
     const columns = [
@@ -94,13 +90,14 @@ const ManageJob = () => {
             key: "actions",
             render: (_, record) => (
                 <Space>
-                    <Button
-                        type="primary"
-                        icon={<Edit size={16} />}
-                        onClick={() => handleEdit(record._id)}
-                    >
-                        Edit
-                    </Button>
+                    <Link href={`/dashboard/update-job/${record._id}`}>
+                        <Button
+                            type="primary"
+                            icon={<Edit size={16} />}
+                        >
+                            Edit
+                        </Button>
+                    </Link>
                     <Popconfirm
                         title="Are you sure to delete this job?"
                         onConfirm={() => handleDelete(record._id)}

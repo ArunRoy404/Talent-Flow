@@ -12,6 +12,15 @@ export async function GET(req, { params }) {
 export async function DELETE(req, { params }) {
     const p = await params
     const result = await dbConnect('jobs').deleteOne({ _id: new ObjectId(p.id) })
-    console.log(result);
     return Response.json(result)
 }
+
+
+export const PUT = async (req, { params }) => {
+        const { id } = await params;
+        const body = await req.json();
+        const jobsCollection = dbConnect("jobs");
+
+        const result = await jobsCollection.updateOne({ _id: new ObjectId(id) },{ $set: body });
+        return Response.json(result)
+};

@@ -1,9 +1,29 @@
+'use client'
+
 import { Form, Input, InputNumber, Button, Select, Checkbox, Row, Col } from "antd";
 import Loader from "@/components/Loader/Loader";
+import { useEffect } from "react";
 const { TextArea } = Input;
 const { Option } = Select;
 
-const JobForm = ({ form, onFinish, isLoading }) => {
+const JobForm = ({ form, onFinish, isLoading, job }) => {
+    useEffect(() => {
+        if (job) {
+            form.setFieldsValue({
+                position: job.position,
+                company: job.company,
+                logo: job.logo,
+                description: job.description,
+                location: job.location,
+                salary: job.salary,
+                monthly: job.monthly,
+                jobType: job.jobType,
+                experience: job.experience,
+                requirements: job.requirements.join(', '),
+            });
+        }
+    }, [job]);
+
     return (
         <Form form={form} layout="vertical" onFinish={onFinish}>
             <Row gutter={16}>
@@ -118,7 +138,7 @@ const JobForm = ({ form, onFinish, isLoading }) => {
                     {
                         isLoading
                             ? <Loader size="20" stroke="3" />
-                            : 'Add Job'
+                            : job ? 'Update Job' : 'Add Job'
                     }
                 </Button>
             </Form.Item>
