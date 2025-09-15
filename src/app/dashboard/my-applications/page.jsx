@@ -15,7 +15,7 @@ const fetchApplications = async (email) => {
     return res.data?.data || []
 }
 
-const page = () => {
+const MyApplications = () => {
     const { data: session } = useSession();
     const queryClient = useQueryClient();
 
@@ -29,7 +29,6 @@ const page = () => {
         enabled: !!session?.user?.email
     });
 
-    console.log(applications);
 
     const columns = [
         {
@@ -108,4 +107,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default MyApplications;
