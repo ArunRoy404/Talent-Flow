@@ -1,18 +1,40 @@
 import dbConnect from "@/lib/dbConnect";
+import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
-// export const GET = async (req, res) => {
-//     const { searchParams } = new URL(req.url);
-//     const limit = parseFloat(searchParams.get("limit")) || 0
+export const GET = async (req, res) => {
+    const { searchParams } = new URL(req.url);
 
-//     // const addedBy = searchParams.get("addedBy");
-//     // const query = addedBy ? { addedBy } : {};
+    const applicantEmail = searchParams.get("applicantEmail");
+    const query = applicantEmail ? { applicantEmail } : {};
 
-//     const jobsCollection = dbConnect('jobs')
-//     // const data = await jobsCollection.find(query).limit(limit).toArray()
-//     const data = await jobsCollection.find().limit(limit).toArray()
-//     return NextResponse.json({ data })
-// }
+    const applicationsCollection = dbConnect('applications')
+    const jobsCollection = dbConnect("jobs");
+
+    const data = await applicationsCollection.find(query).toArray()
+
+
+
+    const applications = await Promise.all(
+        data.map(async (app) => {
+            try {
+                const job = await jobsCollection.findOne({
+                    _id: new ObjectId(app.jobID),
+                });
+                return {
+                    ...app,
+                    job,
+                };
+            } catch (err) {
+                return {
+                    ...app,
+                    job: null,
+                };
+            }
+        })
+    )
+    return NextResponse.json({ data: applications })
+}
 
 
 export const POST = async (req, res) => {
