@@ -4,7 +4,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import GoogleSignIn from "@/components/GoogleSignIn/GoogleSignIn";
-import {signIn, useSession} from 'next-auth/react'
+import { useSession} from 'next-auth/react'
 
 export default function SignIn() {
     const { data: session } = useSession();
@@ -23,7 +23,7 @@ export default function SignIn() {
                 <h1 className="text-3xl font-bold text-secondary">Sign in to TalentFlow</h1>
                 <p className="text-secondary text-sm">Use your Google account to continue</p>
 
-                <GoogleSignIn onClick={async()=>signIn('google', {callbackUrl: '/'})}/>
+                <GoogleSignIn/>
             </div>
         </div>
     );
