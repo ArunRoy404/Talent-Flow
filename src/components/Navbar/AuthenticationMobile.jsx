@@ -2,24 +2,26 @@ import { Button } from "antd";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
-const Authentication = () => {
+const AuthenticationMobile = () => {
     const { data: session } = useSession();
     if (session) return (
-        <div className="hidden md:block">
-            <Button onClick={() => signOut()} type="default" className="!text-secondary">
+        <div className="w-full">
+            <Button onClick={() => signOut()} type="default" className="!text-secondary !w-full">
                 Sign Out
             </Button>
         </div>
     )
     return (
-        <div className="hidden md:block">
+        <div className="w-full">
             <Link href="/signin" className="text-secondary">
-                <Button type="primary">
+                <Button type="primary" className="!w-full">
                     Sign In
                 </Button>
             </Link>
+
         </div>
     );
 };
 
-export default Authentication;
+export default AuthenticationMobile;
+
