@@ -1,6 +1,11 @@
+'use client'
+
 import { Menu, User } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 export default function DashboardHeader({ setSidebarOpen }) {
+    const { data: session } = useSession()
+    console.log(session);
     return (
         <header className="bg-white border-b border-gray-300 p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -16,9 +21,9 @@ export default function DashboardHeader({ setSidebarOpen }) {
 
             {/* user info */}
             <div className="flex items-center gap-3">
-                <span className="text-gray-600">John Doe</span>
+                <span className="text-gray-600">{session?.user?.name}</span>
                 <div className="w-10 h-10 bg-secondary text-white rounded-full flex items-center justify-center">
-                    <User size={20} />
+                    <img className="rounded-full" src={session?.user?.image} alt="User Image" />
                 </div>
             </div>
         </header>
