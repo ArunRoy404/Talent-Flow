@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 
 export default function DashboardHeader({ setSidebarOpen }) {
     const { data: session } = useSession()
-    console.log(session);
     return (
         <header className="bg-white border-b border-gray-300 p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">

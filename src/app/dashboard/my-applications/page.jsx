@@ -24,7 +24,7 @@ const MyApplications = () => {
         isLoading,
         isError,
     } = useQuery({
-        queryKey: ["applications", session?.user?.email],
+        queryKey: ["myApplications", session?.user?.email],
         queryFn: () => fetchApplications(session?.user?.email),
         enabled: !!session?.user?.email
     });

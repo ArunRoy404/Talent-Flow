@@ -6,7 +6,13 @@ export const GET = async (req, res) => {
     const { searchParams } = new URL(req.url);
 
     const applicantEmail = searchParams.get("applicantEmail");
-    const query = applicantEmail ? { applicantEmail } : {};
+    const employerEmail = searchParams.get("employerEmail");
+
+    let query = {}
+    if (applicantEmail) query.applicantEmail = applicantEmail
+    if (employerEmail) query.employerEmail = employerEmail
+
+
 
     const applicationsCollection = dbConnect('applications')
     const jobsCollection = dbConnect("jobs");
