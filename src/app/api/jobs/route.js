@@ -11,7 +11,7 @@ export const GET = async (req, res) => {
     const query = addedBy ? { addedBy } : {};
 
     const jobsCollection = dbConnect('jobs')
-    const data = await jobsCollection.find(query).limit(limit).toArray()
+    const data = await jobsCollection.find(query).sort({dateAdded: -1}).limit(limit).toArray()
     // const data = await jobsCollection.find().limit(limit).toArray()
     return NextResponse.json({ data })
 }
