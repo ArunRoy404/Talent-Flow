@@ -13,7 +13,7 @@ export const GET = async (req, res) => {
     const jobsCollection = dbConnect('jobs')
     const data = await jobsCollection.find(query).limit(limit).toArray()
     // const data = await jobsCollection.find().limit(limit).toArray()
-    return NextResponse.json({ data })
+    return NextResponse.json({ data },{headers:{'Cache-Control':"no-store"}})
 }
 
 
