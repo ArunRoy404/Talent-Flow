@@ -10,7 +10,7 @@ export const GET = async (req, res) => {
     const addedBy = searchParams.get("addedBy");
     const query = addedBy ? { addedBy } : {};
 
-    const jobsCollection = await dbConnect('jobs')
+    const jobsCollection = dbConnect('jobs')
     const data = await jobsCollection.find(query).limit(limit).toArray()
     // const data = await jobsCollection.find().limit(limit).toArray()
     return NextResponse.json({ data })
@@ -19,7 +19,7 @@ export const GET = async (req, res) => {
 
 export const POST = async (req, res) => {
     const postedData = await req.json()
-    const jobsCollection = await dbConnect('jobs')
+    const jobsCollection = dbConnect('jobs')
     const data = await jobsCollection.insertOne(postedData)
     return NextResponse.json({ data })
 }
