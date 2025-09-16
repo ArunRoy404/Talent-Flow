@@ -3,9 +3,7 @@ import PageBanner from '@/components/PageBanner/PageBanner';
 import PageDescription from '@/components/PageBanner/PageDescription';
 import PageTitle from '@/components/PageBanner/PageTitle';
 import React from 'react';
-// Add these exports at the top level of your PAGE component
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+
 
 const Jobs = () => {
     return (
