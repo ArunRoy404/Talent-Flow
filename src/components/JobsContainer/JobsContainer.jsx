@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import JobCard from '../JobCard/JobCard';
 import Section from '../Section/Section';
 import axios from 'axios';
@@ -14,13 +14,15 @@ const JobsContainer = async ({ limit }) => {
 
     return (
         <Section>
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                <Fade triggerOnce >
-                    {jobs?.map((job) => (
-                        <JobCard key={job._id} job={job} />
-                    ))}
-                </Fade>
-            </div>
+            <Suspense fallback={<div>loading</div>}>
+                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    <Fade triggerOnce >
+                        {jobs?.map((job) => (
+                            <JobCard key={job._id} job={job} />
+                        ))}
+                    </Fade>
+                </div>
+            </Suspense>
         </Section>
     );
 };
