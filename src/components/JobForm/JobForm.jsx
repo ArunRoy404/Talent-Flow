@@ -1,7 +1,7 @@
 'use client'
 
 import { Form, Input, InputNumber, Button, Select, Checkbox, Row, Col } from "antd";
-import Loader from "@/components/Loader/Loader";
+import Loader from "@/components/UI/Loader";
 import { useEffect } from "react";
 const { TextArea } = Input;
 const { Option } = Select;

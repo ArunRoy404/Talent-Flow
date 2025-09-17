@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { signOut } from 'next-auth/react';
 import React, { useState } from 'react';
-import Loader from '../Loader/Loader';
+import Loader from '../UI/Loader';
 import { toast } from 'sonner';
 
 const SignoutButton = () => {
