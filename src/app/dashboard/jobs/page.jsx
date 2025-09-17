@@ -1,6 +1,6 @@
 'use client'
 
-import React from "react";
+import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { Table, Button, Space, Popconfirm } from "antd";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { fetchJobs } from "@/axios/jobs";
+import Loader from "@/components/UI/Loader";
 
 
 
@@ -18,13 +19,13 @@ const deleteJob = async (jobId) => {
 
 
 const ManageJob = () => {
+    const [jobDeleting, setJobDeleting] = useState(null)
     const { data: session } = useSession();
     const queryClient = useQueryClient();
 
     const {
         data: jobs = [],
         isLoading,
-        isError,
     } = useQuery({
         queryKey: ["jobs", session?.user?.email],
         queryFn: () => fetchJobs(session?.user?.email),
@@ -35,17 +36,21 @@ const ManageJob = () => {
     const mutation = useMutation({
         mutationFn: deleteJob,
         onSuccess: () => {
+            setJobDeleting(null)
             toast.success("Job deleted successfully");
             queryClient.invalidateQueries(["jobs", session?.user?.email]);
         },
         onError: () => {
+            setJobDeleting(null)
             toast.error("Failed to delete job.");
         },
     })
 
 
     const handleDelete = (jobId) => {
-        mutation.mutate(jobId);
+        console.log(typeof jobId);
+        setJobDeleting(jobId)
+        mutation.mutate(jobId)
     };
 
     const columns = [
@@ -86,8 +91,10 @@ const ManageJob = () => {
                 <Space>
                     <Link href={`/dashboard/update-job/${record._id}`}>
                         <Button
+                            disabled={jobDeleting === record._id}
                             type="primary"
                             icon={<Edit size={16} />}
+                            className="disabled:!cursor-not-allowed"
                         >
                             Edit
                         </Button>
@@ -98,8 +105,17 @@ const ManageJob = () => {
                         okText="Yes"
                         cancelText="No"
                     >
-                        <Button type="danger" icon={<Trash2 size={16} />}>
-                            Delete
+                        <Button
+                            className="disabled:!cursor-not-allowed"
+                            disabled={jobDeleting === record._id}
+                            type="danger"
+                            icon={<Trash2 size={16} />}
+                        >
+                            {
+                                jobDeleting === record._id
+                                    ? <Loader size="15" stroke="3" />
+                                    : 'Delete'
+                            }
                         </Button>
                     </Popconfirm>
                 </Space>
