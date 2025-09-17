@@ -1,6 +1,5 @@
 'use client'
 
-import { fetchEmployerApplications } from '@/axios/applications';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Space, Table, Tag } from 'antd';
 import axios from 'axios';
@@ -10,18 +9,24 @@ import Link from 'next/link';
 import React from 'react';
 import { toast } from 'sonner';
 
+const fetchApplications = async (email) => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/applications`, {
+        params: { employerEmail: email }
+    });
+    return res.data?.data || []
+}
 
-
-const Applications = () => {
-    const { data: session } = useSession();
+const ApplicationsDashboard = () => {
     const queryClient = useQueryClient();
+    const sessionData = useSession();
+    const session = sessionData?.data
 
     const {
         data: applications = [],
         isLoading,
     } = useQuery({
         queryKey: ["applications", session?.user?.email],
-        queryFn: () => fetchEmployerApplications(session?.user?.email),
+        queryFn: () => fetchApplications(session?.user?.email),
         enabled: !!session?.user?.email
     });
 
@@ -32,7 +37,7 @@ const Applications = () => {
                 status: newStatus,
             });
             toast.success(`Application ${newStatus}`);
-            queryClient.invalidateQueries(["applications", session?.user?.email]); // refresh list
+            queryClient.invalidateQueries(["applications", session?.user?.email]);
         } catch (error) {
             toast.error("Failed to update application status");
         }
@@ -139,4 +144,4 @@ const Applications = () => {
     );
 };
 
-export default Applications;
+export default ApplicationsDashboard;

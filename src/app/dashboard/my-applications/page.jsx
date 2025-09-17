@@ -1,23 +1,31 @@
 'use client'
 
-import { fetchApplicantApplications } from '@/axios/applications';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Button, Table, Tag } from 'antd';
+import axios from 'axios';
 import { View } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
 
+const fetchApplications = async (email) => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/applications`, {
+        params: { applicantEmail: email }
+    });
+    return res.data?.data || []
+}
 
-const MyApplications = () => {
-    const { data: session } = useSession();
+
+const MyApplicationsDashboard = () => {
+    const sessionData = useSession();
+    const session = sessionData?.data
 
     const {
         data: applications = [],
         isLoading,
     } = useQuery({
         queryKey: ["myApplications", session?.user?.email],
-        queryFn: () => fetchApplicantApplications(session?.user?.email),
+        queryFn: () => fetchApplications(session?.user?.email),
         enabled: !!session?.user?.email
     });
 
@@ -99,4 +107,4 @@ const MyApplications = () => {
     );
 };
 
-export default MyApplications;
+export default MyApplicationsDashboard;
