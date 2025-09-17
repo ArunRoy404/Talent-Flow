@@ -32,7 +32,6 @@ const ManageJob = () => {
     const {
         data: jobs = [],
         isLoading,
-        refetch
     } = useQuery({
         queryKey: ["jobs", session?.user?.email],
         queryFn: () => fetchJobs(session?.user?.email),
@@ -46,12 +45,10 @@ const ManageJob = () => {
             setJobDeleting(null)
             toast.success("Job deleted successfully");
             queryClient.invalidateQueries(["jobs", session?.user?.email]);
-            refetch()
         },
         onError: () => {
             setJobDeleting(null)
             toast.error("Failed to delete job.");
-            refetch()
         },
     })
 

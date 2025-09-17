@@ -26,7 +26,6 @@ const ApplicationsDashboard = () => {
     const {
         data: applications = [],
         isLoading,
-        refetch
     } = useQuery({
         queryKey: ["applications", session?.user?.email],
         queryFn: () => fetchApplications(session?.user?.email),
@@ -46,9 +45,6 @@ const ApplicationsDashboard = () => {
         } catch (error) {
             toast.error("Failed to update application status");
             setStatusUpdating({})
-        }
-        finally {
-            refetch()
         }
     };
 
