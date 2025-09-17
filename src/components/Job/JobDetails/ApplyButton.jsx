@@ -3,7 +3,7 @@
 import { Button } from 'antd';
 import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
-import Loader from '../UI/Loader';
+import Loader from '@/components/UI/Loader';
 import { toast } from 'sonner';
 import axios from 'axios';
 import Link from 'next/link';

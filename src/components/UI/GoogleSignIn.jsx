@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { signIn } from 'next-auth/react';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
-import Loader from '../UI/Loader';
+import Loader from '@/components/UI/Loader';
 import { useSearchParams } from 'next/navigation';
 
 const GoogleSignIn = () => {

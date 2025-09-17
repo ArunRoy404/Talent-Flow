@@ -1,4 +1,5 @@
-import GoogleSignIn from "@/components/GoogleSignIn/GoogleSignIn";
+import GoogleSignIn from "@/components/UI/GoogleSignIn";
+
 
 export default function SignIn() {
     return (

@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import SignoutButton from "../SignoutButton/SignoutButton";
+import SignoutButton from "../UI/SignoutButton";
 
 const Authentication = () => {
     const { data: session } = useSession();
