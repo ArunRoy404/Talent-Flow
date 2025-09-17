@@ -1,12 +1,13 @@
 'use client'
 
+import Loader from '@/components/UI/Loader';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Space, Table, Tag } from 'antd';
 import axios from 'axios';
 import { View } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'sonner';
 
 const fetchApplications = async (email) => {
@@ -17,6 +18,7 @@ const fetchApplications = async (email) => {
 }
 
 const ApplicationsDashboard = () => {
+    const [statusUpdating, setStatusUpdating] = useState({})
     const queryClient = useQueryClient();
     const sessionData = useSession();
     const session = sessionData?.data
@@ -24,6 +26,7 @@ const ApplicationsDashboard = () => {
     const {
         data: applications = [],
         isLoading,
+        refetch
     } = useQuery({
         queryKey: ["applications", session?.user?.email],
         queryFn: () => fetchApplications(session?.user?.email),
@@ -32,14 +35,20 @@ const ApplicationsDashboard = () => {
 
 
     const handleUpdateStatus = async (applicationId, newStatus) => {
+        setStatusUpdating({ applicationId, newStatus })
         try {
             await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/applications/${applicationId}`, {
                 status: newStatus,
             });
             toast.success(`Application ${newStatus}`);
+            setStatusUpdating({})
             queryClient.invalidateQueries(["applications", session?.user?.email]);
         } catch (error) {
             toast.error("Failed to update application status");
+            setStatusUpdating({})
+        }
+        finally {
+            refetch()
         }
     };
 
@@ -106,23 +115,31 @@ const ApplicationsDashboard = () => {
 
                         {/* Accept Button */}
                         <Button
+                            disabled={statusUpdating.applicationId === record._id || !isPending}
                             type="primary"
                             className="!bg-green-500 !text-white disabled:!bg-gray-200"
-                            disabled={!isPending}
                             onClick={() => handleUpdateStatus(record._id, "accepted")}
                         >
-                            Accept
+                            {
+                                statusUpdating.applicationId === record._id && statusUpdating.newStatus === 'accepted'
+                                    ? <Loader size='15' stroke='3' />
+                                    : 'Accept'
+                            }
                         </Button>
 
                         {/* Reject Button */}
                         <Button
                             type="primary"
                             danger
-                            disabled={!isPending}
+                            disabled={statusUpdating.applicationId === record._id || !isPending}
                             className='!text-white disabled:!bg-gray-200'
                             onClick={() => handleUpdateStatus(record._id, "rejected")}
                         >
-                            Reject
+                            {
+                                statusUpdating.applicationId === record._id && statusUpdating.newStatus === 'rejected'
+                                    ? <Loader size='15' stroke='3' />
+                                    : 'Reject'
+                            }
                         </Button>
                     </Space>
                 );
@@ -132,7 +149,7 @@ const ApplicationsDashboard = () => {
 
     return (
         <div className="p-6 bg-white min-h-screen">
-            <h2 className="text-2xl font-bold text-secondary mb-6">My Applications</h2>
+            <h2 className="text-2xl font-bold text-secondary mb-6">Manage Applications</h2>
             <Table
                 columns={columns}
                 dataSource={applications}

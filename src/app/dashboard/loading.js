@@ -1,5 +1,5 @@
-import LoadingPage from "@/pages/LoadingPage";
+import LoadingPageDashboard from "@/pages/Loading/LoadingPageDashboard";
 
-const loading = () => <LoadingPage/>
+const loading = () => <LoadingPageDashboard/>
 
 export default loading;

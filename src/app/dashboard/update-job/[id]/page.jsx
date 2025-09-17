@@ -1,6 +1,13 @@
-import { fetchJob } from "@/axios/jobs";
 import UpdateJobForm from "@/components/Job/JobForm/UpdateJobForm";
+import axios from "axios";
 
+const fetchJob = async (id) => {
+    try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${id}`)
+        return res.data
+    } catch {
+    }
+}
 
 const UpdateJob = async ({ params }) => {
     const { id } = await params;

@@ -1,11 +1,20 @@
-
-import { fetchJob } from "@/axios/jobs";
 import ApplyButton from "@/components/Job/JobDetails/ApplyButton";
 import JobAddedBy from "@/components/Job/JobDetails/JobAddedBy";
 import JobDescription from "@/components/Job/JobDetails/JobDescription";
 import JobHeader from "@/components/Job/JobDetails/JobHeader";
 import JobMeta from "@/components/Job/JobDetails/JobMeta";
 import JobRequirements from "@/components/Job/JobDetails/JobRequirements";
+import axios from "axios";
+
+
+const fetchJob = async (id) => {
+    try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${id}`)
+        return res.data
+    } catch {
+
+    }
+}
 
 
 const JobDetail = async ({ params }) => {

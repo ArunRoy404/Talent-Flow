@@ -8,9 +8,15 @@ import { Edit, Trash2 } from "lucide-react";
 import { toast } from 'sonner';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { fetchJobs } from "@/axios/jobs";
 import Loader from "@/components/UI/Loader";
 
+
+const fetchJobs = async (email) => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs`, {
+        params: { addedBy: email }
+    });
+    return res.data?.data || []
+}
 
 
 const deleteJob = async (jobId) => {
@@ -26,6 +32,7 @@ const ManageJob = () => {
     const {
         data: jobs = [],
         isLoading,
+        refetch
     } = useQuery({
         queryKey: ["jobs", session?.user?.email],
         queryFn: () => fetchJobs(session?.user?.email),
@@ -39,16 +46,17 @@ const ManageJob = () => {
             setJobDeleting(null)
             toast.success("Job deleted successfully");
             queryClient.invalidateQueries(["jobs", session?.user?.email]);
+            refetch()
         },
         onError: () => {
             setJobDeleting(null)
             toast.error("Failed to delete job.");
+            refetch()
         },
     })
 
 
     const handleDelete = (jobId) => {
-        console.log(typeof jobId);
         setJobDeleting(jobId)
         mutation.mutate(jobId)
     };

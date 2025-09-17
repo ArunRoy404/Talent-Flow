@@ -2,8 +2,12 @@ import React from 'react';
 import JobCard from './JobCard';
 import Section from '../Section/Section';
 import { Fade } from 'react-awesome-reveal';
-import { fetchJobs } from '@/axios/jobs';
+import axios from 'axios';
 
+const fetchJobs = async (limit) => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs?limit=${limit}`)
+    return res.data.data
+}
 
 const JobsContainer = async ({ limit }) => {
     const jobs = await fetchJobs(limit)
