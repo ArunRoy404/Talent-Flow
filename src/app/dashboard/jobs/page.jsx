@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSession } from "next-auth/react";
 import { Table, Button, Space, Popconfirm } from "antd";
 import axios from "axios";
@@ -8,15 +8,9 @@ import { Edit, Trash2 } from "lucide-react";
 import { toast } from 'sonner';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import { fetchJobs } from "@/axios/jobs";
 
 
-
-const fetchJobs = async (email) => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs`, {
-        params: { addedBy: email }
-    });
-    return res.data?.data || []
-}
 
 const deleteJob = async (jobId) => {
     return axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs/${jobId}`);

@@ -1,5 +1,6 @@
 'use client'
 
+import { fetchEmployerApplications } from '@/axios/applications';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Space, Table, Tag } from 'antd';
 import axios from 'axios';
@@ -9,12 +10,7 @@ import Link from 'next/link';
 import React from 'react';
 import { toast } from 'sonner';
 
-const fetchApplications = async (email) => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/applications`, {
-        params: { employerEmail: email }
-    });
-    return res.data?.data || []
-}
+
 
 const Applications = () => {
     const { data: session } = useSession();
@@ -23,10 +19,9 @@ const Applications = () => {
     const {
         data: applications = [],
         isLoading,
-        isError,
     } = useQuery({
         queryKey: ["applications", session?.user?.email],
-        queryFn: () => fetchApplications(session?.user?.email),
+        queryFn: () => fetchEmployerApplications(session?.user?.email),
         enabled: !!session?.user?.email
     });
 
