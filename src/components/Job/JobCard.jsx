@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "antd";
+import { Card, Button, Image } from "antd";
 import Link from "next/link";
 
 const JobCard = ({ job }) => {
@@ -8,7 +8,9 @@ const JobCard = ({ job }) => {
 
             {/* Top Row: Logo + Position/Company */}
             <div className="flex items-center mb-4">
-                <img
+                <Image
+                    width={48}
+                    height={48}
                     src={job.logo}
                     alt={job.company}
                     className="w-12 h-12 object-contain rounded"
