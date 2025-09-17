@@ -1,13 +1,5 @@
+import LoadingPage from "@/pages/LoadingPage";
 
-import Loader from '@/components/UI/Loader';
-import React from 'react';
-
-const loading = () => {
-    return (
-        <div className='h-screen w-screen flex items-center justify-center'>
-            <Loader color='black' size="25" stroke="3" />
-        </div>
-    );
-};
+const loading = () => <LoadingPage/>
 
 export default loading;
