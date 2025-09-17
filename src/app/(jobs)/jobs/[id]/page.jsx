@@ -1,9 +1,10 @@
-import ApplyButton from "@/components/JobDetails/ApplyButton";
-import JobAddedBy from "@/components/JobDetails/JobAddedBy";
-import JobDescription from "@/components/JobDetails/JobDescription";
-import JobHeader from "@/components/JobDetails/JobHeader";
-import JobMeta from "@/components/JobDetails/JobMeta";
-import JobRequirements from "@/components/JobDetails/JobRequirements";
+
+import ApplyButton from "@/components/Job/JobDetails/ApplyButton";
+import JobAddedBy from "@/components/Job/JobDetails/JobAddedBy";
+import JobDescription from "@/components/Job/JobDetails/JobDescription";
+import JobHeader from "@/components/Job/JobDetails/JobHeader";
+import JobMeta from "@/components/Job/JobDetails/JobMeta";
+import JobRequirements from "@/components/Job/JobDetails/JobRequirements";
 import axios from "axios";
 
 const fetchJob = async (id) => {

@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { Form, Input, InputNumber, Button, Select, Checkbox, Row, Col } from "antd";
 import axios from "axios";
 import { toast } from 'sonner';
-import JobForm from "@/components/JobForm/JobForm";
+import JobForm from "@/components/Job/JobForm/JobForm";
 
 const { TextArea } = Input;
 const { Option } = Select;

@@ -1,5 +1,5 @@
-import ContactForm from "@/components/ContactForm/ContactForm";
-import ContactInfo from "@/components/ContactInfo/ContactInfo";
+import ContactForm from "@/components/Contact/ContactForm";
+import ContactInfo from "@/components/Contact/ContactInfo";
 import PageBanner from "@/components/PageBanner/PageBanner";
 import PageDescription from "@/components/PageBanner/PageDescription";
 import PageTitle from "@/components/PageBanner/PageTitle";

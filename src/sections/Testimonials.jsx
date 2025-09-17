@@ -1,4 +1,4 @@
-import TestimonialCard from "@/components/TestimonialCard/TestimonialCard";
+import TestimonialCard from "@/components/Testimonial/TestimonialCard";
 
 export default function Testimonials() {
     const testimonials = [

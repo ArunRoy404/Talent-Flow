@@ -1,5 +1,5 @@
 import React from 'react';
-import JobCard from '../JobCard/JobCard';
+import JobCard from './JobCard';
 import Section from '../Section/Section';
 import axios from 'axios';
 import { Fade } from 'react-awesome-reveal';

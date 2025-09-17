@@ -1,4 +1,4 @@
-import UpdateJobForm from "@/components/JobForm/UpdateJobForm";
+import UpdateJobForm from "@/components/Job/JobForm/UpdateJobForm";
 import axios from "axios";
 
 const fetchJob = async (id) => {

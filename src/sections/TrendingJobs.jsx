@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "antd";
-import JobsContainer from "@/components/JobsContainer/JobsContainer";
+import JobsContainer from "@/components/Job/JobsContainer";
 import Link from "next/link";
 
 

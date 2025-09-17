@@ -1,6 +1,6 @@
 import FooterNavigation from "./FooterNavigation";
-import SocialLinks from "../SocialLinks/SocialLinks";
-import Copyright from "../Copyright/Copyright";
+import SocialLinks from "../UI/SocialLinks";
+import Copyright from "../UI/Copyright";
 
 const navLinks = [
     { href: "/", label: "Home" },

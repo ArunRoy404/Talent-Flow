@@ -1,4 +1,4 @@
-import JobsContainer from '@/components/JobsContainer/JobsContainer';
+import JobsContainer from '@/components/Job/JobsContainer';
 import PageBanner from '@/components/PageBanner/PageBanner';
 import PageDescription from '@/components/PageBanner/PageDescription';
 import PageTitle from '@/components/PageBanner/PageTitle';
