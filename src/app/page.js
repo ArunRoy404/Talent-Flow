@@ -7,8 +7,8 @@ import Testimonials from "@/sections/Testimonials";
 import TrendingJobs from "@/sections/TrendingJobs";
 import { Fade } from "react-awesome-reveal";
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// export const dynamic = 'force-dynamic';
+// export const revalidate = 0;
 
 export default function Home() {
   return (
